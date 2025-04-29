@@ -1,0 +1,16 @@
+<%- include ("../../partials/header.ejs") %>
+<%- include ("../../partials/navbar.ejs") %>
+
+<div class="container">
+    <h2>Editar Categoria</h2>
+    <form action="/categories/update" method="POST">
+        <input type="hidden" name="id" value="<%= category.id %>">
+        <div class="form-group">
+            <label for="title">Título</label>
+            <input type="text" class="form-control" id="title" name="title" value="<%= category.title %>" required>
+        </div>
+        <button type="submit" class="btn btn-success">Salvar</button>
+    </form>
+</div>
+
+<%- include ("../../partials/footer.ejs") %>
