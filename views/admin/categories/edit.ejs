@@ -2,15 +2,18 @@
 <%- include ("../../partials/navbar.ejs") %>
 
 <div class="container">
-    <h2>Editar Categoria</h2>
-    <form action="/categories/update" method="POST">
-        <input type="hidden" name="id" value="<%= category.id %>">
-        <div class="form-group">
-            <label for="title">Título</label>
-            <input type="text" class="form-control" id="title" name="title" value="<%= category.title %>" required>
+    <hr>
+    <div class="card">
+        <div class="card-header">
+            <h2>Edição de categorias</h2>
         </div>
-        <button type="submit" class="btn btn-success">Salvar</button>
-    </form>
+        <div class="card-body"></div>
+            <form method="POST" action="/categories/update">
+                <input class="form-control" type="text" name="title" placeholder="Defina o título da categoria" value="<%= category.title %>"><br>
+                <input type="hidden" name="id" value="<%= category.id %>">
+                <button class="btn btn-success">Atualizar</button>
+            </form>
+        </div>
+    </div>
 </div>
-
 <%- include ("../../partials/footer.ejs") %>
