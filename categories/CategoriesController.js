@@ -8,6 +8,10 @@ router.get("/admin/categories/new",(req, res) => {
     res.render("admin/categories/new");
 });
 
+
+
+
+module.exports = router;
 // Rota para salvar uma nova categoria
 router.post("/categories/save", (req, res) => {
     var title = req.body.title;
@@ -22,6 +26,7 @@ router.post("/categories/save", (req, res) => {
 
     }else{
         res.redirect("/admin/categories/new");
+        
     }
 });
 

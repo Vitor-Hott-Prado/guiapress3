@@ -48,5 +48,18 @@ router.post("/articles/save", (req, res) => {
         res.redirect("/admin/articles/new");
     }
 });
+router.get("/admin/categories/:id/articles/new", (req, res) => {
+    var id = req.params.id;
+    Category.findByPk(id).then(category => {
+        if(category != undefined){
+            res.render("admin/categories/articles/new", {category: category});
+        }else{
+            res.redirect("/admin/categories");
+        }
+    }).catch(erro => {
+        res.redirect("/admin/categories");
+    });
+});
+
 
 module.exports = router;
