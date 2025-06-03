@@ -9,11 +9,45 @@
         </div>
         <div class="card-body"></div>
             <form method="POST" action="/articles/update">
+                <input type="hidden" value="<%= article.id %>" name="id">
                 <input class="form-control" type="text" name="title" placeholder="Defina o título do artigo" value="<%= article.title %>"><br>
-                <input type="hidden" name="id" value="<%= article.id %>">
+                <textarea class="form-control" placeholder="Escreva o artigo aqui" name="body" id="article"></textarea><br>
+                <label>Categoria</label>
+                <select name="category" class="form-control">
+                    <% categories.forEach((category) => {
+                        <% if(category.id == article.categoryId) {%>
+                            <option value="<%=category.id %>" selected><%= category.title %></option>
+                        <% } else { %>
+                            <option value="<%=category.id %>"><%= category.title %></option>
+                        <% } %>
+                    <% }) %>
+                </select>
+                <br>
                 <button class="btn btn-success">Atualizar</button>
             </form>
         </div>
     </div>
 </div>
+
+<div id="content" style="display: none;">
+    <%- article.body %>
+
+</div>
+
+
 <%- include ("../../partials/footer.ejs") %>
+
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        language: 'pt-BR',
+        selector: "#article",
+        activeEditor: true,
+        plugins: [
+            'advlist autolink link image lists print prewiew hr searchreplace worcount fullscreen insertdatatime media save table paste emoticons'
+        ],
+        init_instance_callback: () => {
+            tinymce.get("article").setContent($("#content").html())
+        }
+    })
+</script>
